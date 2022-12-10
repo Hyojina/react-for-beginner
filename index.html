@@ -14,12 +14,16 @@
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script type="text/babel">
     const root = ReactDOM.createRoot(document.getElementById("root"));
-    const Title = (
-      <h3 id="title" onMouseEnter={() => console.log("Mouse enter.")}>
-        Hello, I'm a h3!
-      </h3>
-    );
-    const Button = (
+    // 1. 일반 함수 형태
+    function Title() {
+      return (
+        <h3 id="title" onMouseEnter={() => console.log("Mouse enter.")}>
+          Hello, I'm a h3!
+        </h3>
+      );
+    }
+    // 2. 화살표 함수 형태
+    const Button = () => (
       <button
         style={{ backgroundColor: "tomato" }}
         onClick={() => console.log("I'm clicked.")}
@@ -27,7 +31,12 @@
         Click me
       </button>
     );
-    const container = React.createElement("div", null, [Title, Button]);
-    root.render(container, root);
+    const Container = () => (
+      <div>
+        <Title />
+        <Button />
+      </div>
+    );
+    root.render(<Container />, root);
   </script>
 </html>

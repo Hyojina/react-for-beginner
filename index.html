@@ -13,11 +13,20 @@
   ></script>
   <script>
     const root = ReactDOM.createRoot(document.getElementById("root"));
-    const span = React.createElement(
-      "span",
-      { id: "HJ-span", style: { color: "blue" } },
-      "Hello, I'm a span!"
+    const h3 = React.createElement(
+      "h3",
+      { id: "title", onMouseEnter: () => console.log("Mouse enter.") },
+      "Hello, I'm a h3!"
     );
-    root.render(span, root);
+    const btn = React.createElement(
+      "button",
+      {
+        onClick: () => console.log("I'm clicked."),
+        style: { backgroundColor: "tomato" },
+      },
+      "Click me"
+    );
+    const container = React.createElement("div", null, [h3, btn]);
+    root.render(container, root);
   </script>
 </html>

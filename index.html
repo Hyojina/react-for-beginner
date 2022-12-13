@@ -13,7 +13,7 @@
   ></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script type="text/babel">
-    function Btn(props) {
+    function Btn({ banana, big }) {
       return (
         <button
           style={{
@@ -22,17 +22,18 @@
             padding: "10px 20px",
             borderRadius: 10,
             border: 0,
+            fontSize: big ? 18 : 16,
           }}
         >
-          {props.banana}
+          {banana}
         </button>
       );
     }
     function App() {
       return (
         <div>
-          <Btn banana="Save Changes" />
-          <Btn banana="Continue" />
+          <Btn banana="Save Changes" big={true} />
+          <Btn banana="Continue" big={false} />
         </div>
       );
     }

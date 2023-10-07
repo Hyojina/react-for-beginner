@@ -14,9 +14,11 @@
   <script src="https://unpkg.com/prop-types@15.7.2/prop-types.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script type="text/babel">
-    function Btn({ text, fontSize = 16 }) {
+    function Button({ text, fontSize, changeValue }) {
+      console.log(`${text} is rendered.`);
       return (
         <button
+          onClick={changeValue}
           style={{
             backgroundColor: "tomato",
             color: "white",
@@ -30,15 +32,25 @@
         </button>
       );
     }
-    Btn.propTypes = {
-      text: PropTypes.string.isRequired,
-      fontSize: PropTypes.number,
+
+    const MemorizedButton = React.memo(Button);
+
+    Button.propTypes = {
+      text: PropTypes.string,
     };
+
     function App() {
+      const [value, setValue] = React.useState("Save Changes");
+      const changeValue = () => setValue("Revert Changes");
+
       return (
         <div>
-          <Btn text="Save Changes" fontSize={18} />
-          <Btn text="Continue" />
+          <MemorizedButton
+            text={value}
+            fontSize={24}
+            changeValue={changeValue}
+          />
+          <MemorizedButton text="Continue" fontSize={14} />
         </div>
       );
     }
